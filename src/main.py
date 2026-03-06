@@ -87,3 +87,30 @@ def read_input(path: str) -> tuple[int, list[int]]:
 
     return k, requests
 
+def main():
+    if len(sys.argv) < 2 or len(sys.argv) > 3:
+        print(f"Usage: python {sys.argv[0]} <input_file> [output_file]", file=sys.stderr)
+        sys.exit(1)
+
+    k, requests = read_input(sys.argv[1])
+
+    fifo_misses = fifo_cache(k, requests)
+    lru_misses = lru_cache(k, requests)
+    optff_misses = optff_cache(k, requests)
+
+    lines = [
+        f"FIFO  : {fifo_misses}",
+        f"LRU   : {lru_misses}",
+        f"OPTFF : {optff_misses}",
+    ]
+
+    if len(sys.argv) == 3:
+        with open(sys.argv[2], "w") as f:
+            f.write("\n".join(lines) + "\n")
+        print(f"Output written to {sys.argv[2]}")
+    else:
+        print("\n".join(lines))
+
+if __name__ == "__main__":
+    main()
+
