@@ -35,3 +35,11 @@ def lru_cache(k: int, requests: list[int]) -> int:
             cache[page] = None
 
     return misses
+
+
+
+def _next_occurrence(page: int, after: int, requests: list[int], m: int) -> int:
+    for j in range(after + 1, m):
+        if requests[j] == page:
+            return j
+    return m
