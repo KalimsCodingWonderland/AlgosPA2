@@ -12,6 +12,7 @@ You have to make sure that you update the input file and the name for the output
 
 
 Solutions to the Written component: 
+
 1) 
 <img width="1218" height="294" alt="image" src="https://github.com/user-attachments/assets/35576f4a-8d7a-4b68-8bea-baf05a649f1f" />
 
