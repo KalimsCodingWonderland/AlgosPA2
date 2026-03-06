@@ -71,3 +71,19 @@ def _next_occurrence(page: int, after: int, requests: list[int], m: int) -> int:
         if requests[j] == page:
             return j
     return m
+
+def read_input(path: str) -> tuple[int, list[int]]:
+    with open(path) as f:
+        first_line = f.readline().split()
+        k = int(first_line[0])
+        m = int(first_line[1])
+
+        requests = list(map(int, f.read().split()))
+
+    if len(requests) != m:
+        raise ValueError(
+            f"Expected {m} requests but found {len(requests)} in '{path}'."
+        )
+
+    return k, requests
+
