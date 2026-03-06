@@ -1,0 +1,3 @@
+FIFO  : 64
+LRU   : 64
+OPTFF : 34
