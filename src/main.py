@@ -1,5 +1,5 @@
 import sys
-from collections import deque
+from collections import deque, OrderedDict
 
 def fifo_cache(k: int, requests: list[int]) -> int:
     cache: set[int] = set()
