@@ -36,7 +36,35 @@ def lru_cache(k: int, requests: list[int]) -> int:
 
     return misses
 
+def optff_cache(k: int, requests: list[int]) -> int:
+    cache = set()
+    misses = 0
+    m = len(requests)
 
+    for i in range(m):
+        page = requests[i]
+
+        if page in cache:
+            continue
+
+        misses += 1
+
+        if len(cache) == k:
+            victim = None
+            farthest_next_use = -1
+
+            for cached_page in cache:
+                next_use = _next_occurrence(cached_page, i, requests, m)
+
+                if next_use > farthest_next_use:
+                    farthest_next_use = next_use
+                    victim = cached_page
+
+            cache.remove(victim)
+
+        cache.add(page)
+
+    return misses
 
 def _next_occurrence(page: int, after: int, requests: list[int], m: int) -> int:
     for j in range(after + 1, m):
