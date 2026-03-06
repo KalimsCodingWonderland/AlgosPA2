@@ -18,3 +18,20 @@ def fifo_cache(k: int, requests: list[int]) -> int:
         order.append(page)
 
     return misses
+
+def lru_cache(k: int, requests: list[int]) -> int:
+    cache = OrderedDict()
+    misses = 0
+
+    for page in requests:
+        if page in cache:
+            cache.move_to_end(page)
+        else:
+            misses += 1
+
+            if len(cache) == k:
+                cache.popitem(last=False)
+
+            cache[page] = None
+
+    return misses
